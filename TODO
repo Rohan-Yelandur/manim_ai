@@ -1,6 +1,0 @@
-Script and code should be returned in a single Gemini API call.
-Eleven labs API call should only be made once a video is able to be rendered.
-
-
-Fine-tune a model for better Manim code gen.
-Look into Monster API and Hugging Face for inference.
