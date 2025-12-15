@@ -1,0 +1,4 @@
+.env
+.venv
+manim_files
+__pycache__
