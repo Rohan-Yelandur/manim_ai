@@ -8,3 +8,7 @@ class ManimScene(Scene):
 def construct(self):
 <your code here>
 '''
+
+script_prompt = '''
+
+'''

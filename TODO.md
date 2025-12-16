@@ -1,7 +1,6 @@
-# Create api endpoints
+Create narration script and synch animated video with elevenlabs audio using timestamps.
 
-Problem: right now calling generate_content with gemini is blocking which will cause problems if multiple users are on my app.
+Create a jobID to synch narration scripts, audios, and videos to create the final video.
 
-Need to somehow multithread the various api calls.
-
-Polling vs interrupts?
+Embed prompts in an embedding space to find semantically similar prompts to cache.
+Cache hits for videos that already exist for a certain prompt.
