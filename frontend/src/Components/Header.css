@@ -1,0 +1,51 @@
+.header {
+    position: absolute;
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    z-index: 10;
+    color: white;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    cursor: pointer;
+}
+
+.logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-img {
+    height: 3rem;
+    width: auto;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.03125rem;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem 1.5rem;
+    }
+
+    .logo-img {
+        height: 2rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+}

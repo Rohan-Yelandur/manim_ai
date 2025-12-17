@@ -1,15 +1,16 @@
 import './App.css';
+import Header from './Components/Header';
+import Hero from './Components/Hero';
+import Chat from './Components/Chat';
+import Footer from './Components/Footer';
 
 function App() {
-  const handleClick = async() => {
-    const response = await fetch('http://localhost:8000/');
-    const data = await response.json();
-    console.log(data);
-  }
-
   return (
-    <div className="App">
-      <button onClick={handleClick}>Click me pls</button>
+    <div className="app">
+      <Header />
+      <Hero />
+      <Chat />
+      <Footer />
     </div>
   );
 }

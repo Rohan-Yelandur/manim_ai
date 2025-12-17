@@ -1,0 +1,36 @@
+.footer {
+    position: absolute;
+    width: 100%;
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    z-index: 10;
+    color: white;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    color: #334155;
+    font-weight: 500;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.footer-links a {
+    color: #475569;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-links a:hover {
+    color: #0f172a; 
+    transform: translateY(-0.125rem);
+}
