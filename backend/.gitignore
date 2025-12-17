@@ -1,4 +1,6 @@
 .env
 .venv
 manim_videos
+elevenlabs_audios
+final_videos
 __pycache__

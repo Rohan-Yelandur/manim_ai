@@ -1,2 +1,5 @@
-gemini_narration_model = 'gemini-2.5-flash-lite'
-gemini_manim_model = 'gemini-2.5-flash'
+GEMINI_NARRATION_MODEL = 'gemini-2.0-flash-lite'
+GEMINI_MANIM_MODEL = 'gemini-2.5-pro'
+
+ELEVENLABS_MODEL = 'eleven_flash_v2'
+ELEVENLABS_VOICE_ID = 'JBFqnCBsd6RMkjVDRZzb'

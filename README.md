@@ -1,4 +1,4 @@
-# MathVision
+# AnyMath
 
 Generate animated and narrated AI videos lessons for any math topic.
 
