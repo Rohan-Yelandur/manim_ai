@@ -29,17 +29,19 @@ def generate_script(user_query:str) -> str:
     
 def generate_audio(narration_script: str) -> dict:
     # Get audio from ElevenLabs
-    response = elevenlabs_client.text_to_speech.convert_with_timestamps(
-        voice_id=ELEVENLABS_VOICE_ID,
-        model_id=ELEVENLABS_MODEL,
-        text=narration_script,
-        output_format="mp3_44100_128"
-    )
+    try:
+        response = elevenlabs_client.text_to_speech.convert_with_timestamps(
+            voice_id=ELEVENLABS_VOICE_ID,
+            model_id=ELEVENLABS_MODEL,
+            text=narration_script,
+            output_format="mp3_44100_128"
+        )
+    except Exception as e:
+        raise Exception(f'ElevenLabs API call failed: {str(e)}')
 
     # 2. Save audio file
     os.makedirs('elevenlabs_audios', exist_ok=True)
     audio_bytes = base64.b64decode(response.audio_base_64)
-    
     with open('elevenlabs_audios/audio.mp3', 'wb') as audio_file:
         audio_file.write(audio_bytes)
 
@@ -95,23 +97,17 @@ class ManimScene(Scene):
         }):
             scene = exec_globals.get('ManimScene')()
             scene.render()
-            original_video_path = scene.renderer.file_writer.movie_file_path
+            manim_video_path = scene.renderer.file_writer.movie_file_path
     except Exception as e:
         raise Exception(f'Rendering the Manim video failed')
-    
-    # Rearrange file structure and clean up
-    final_video_path = 'manim_videos/ManimScene.mp4'
-    shutil.move(original_video_path, final_video_path)
-    shutil.rmtree('manim_videos/videos', ignore_errors=True)
-    shutil.rmtree('manim_videos/images', ignore_errors=True)
         
-    return final_video_path
+    return manim_video_path
 
-def stitch_video_and_audio() -> str:
+def stitch_video_and_audio(video_path : str) -> str:
     os.makedirs('final_videos', exist_ok=True)
     result = subprocess.run([
         'ffmpeg',
-        '-i', 'manim_videos/ManimScene.mp4',
+        '-i', f'{video_path}',
         '-i', 'elevenlabs_audios/audio.mp3',
         '-c:v', 'copy',
         '-c:a', 'aac',

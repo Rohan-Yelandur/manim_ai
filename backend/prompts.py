@@ -17,20 +17,27 @@ GUIDELINES:
 Keep all objects within x-coordinates: -6 to 6.
 Keep all objects within y-coordinates: -3 to 3.
 Arguments to the wait function should be > 0.
+Ensure appropriate spacing between objects to avoid overlap.
 '''
 
 def script_prompt(user_prompt: dict):
     return f'''
-USER PROMPT: 
-{user_prompt}
-
 GOAL:
 You are an expert writer for math video lessons. Based on the user prompt, 
 create a narration script that explains the WHY and HOW behind the concept.
 
+USER PROMPT: 
+{user_prompt}
+
+Choose between the following script lengths for the minimum that is necessary to explain the user prompt:
+- Short: 40 to 60 words
+- Medium: 60 to 100 words
+- Long: 100 to 150 words
+
 CRITICAL REQUIREMENTS:
-Length of 40 to 60 words.
 Your script should be easy to visualize.
 Use clear and direct explanations, with concise wording.
-Your output should contain only spoken words and punctuation, NO markdown or other characters.
+Your output should contain only SPOKEN words and punctuation, no tokens that shouldn't be spoken.
+NO markdown or characters that aren't spoken words.
+Do NOT include intro and outro sentences. Jump straight into the concept.
 '''

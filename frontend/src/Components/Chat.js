@@ -26,7 +26,6 @@ const Chat = () => {
 
   return (
       <div className="chat-container">
-          <h1>Chat</h1>
           <input 
             type="text"
             placeholder="enter question here"

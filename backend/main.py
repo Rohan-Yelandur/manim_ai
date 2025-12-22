@@ -21,8 +21,7 @@ class CreateVideo(BaseModel):
 def create_video(request: CreateVideo):
     script = generate_script(request.query)
     timing_data = generate_audio(script)
-    generate_manim_video(timing_data)
-    video_path = stitch_video_and_audio()
-    file_response = FileResponse(path=video_path, media_type='video/mp4', filename='video.mp4')
-    os.remove(video_path)
+    manim_video_path = generate_manim_video(timing_data)
+    final_video_path = stitch_video_and_audio(manim_video_path)
+    file_response = FileResponse(path=final_video_path, media_type='video/mp4', filename='video.mp4')
     return file_response

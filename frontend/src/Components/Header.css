@@ -1,23 +1,14 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 2rem;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    gap: 1rem;
+    padding: 1rem 2rem;     
 }
 
 .home-button {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    text-decoration: none;
-    color: #1a1a1a;
-    transition: opacity 0.2s ease;
 }
 
 .logo-img {
@@ -27,15 +18,11 @@
 
 .title {
     font-size: 1.25rem;
-    font-weight: 700;
     margin: 0;
-    letter-spacing: -0.025em;
 }
 
-.gallery-button {
-    font-weight: 500;
-    color: #4b5563;
+.gallery-button,
+.login-button,
+.logout-button {
     padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.2s ease;
 }
