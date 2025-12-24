@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      <span className="footer-text">Built by Rohan Yelandur</span>
+      <span className="footer-text">© 2025 AnyMath. All rights reserved.</span>
       <div className="footer-links">
         <a
           href="https://www.linkedin.com/in/rohan-yelandur/"

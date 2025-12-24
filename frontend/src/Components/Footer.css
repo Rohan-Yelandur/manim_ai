@@ -3,14 +3,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 2rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: auto;
-    background: #ffffff;
+    background: transparent;
 }
 
 .footer-text {
     font-size: 0.9rem;
-    color: #6b7280;
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
 }
 
@@ -21,14 +21,14 @@
 }
 
 .footer-links a {
-    color: #6b7280;
+    color: rgba(255, 255, 255, 0.7);
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
 }
 
 .footer-links a:hover {
-    color: #4f46e5;
+    color: #ffffff;
     transform: translateY(-2px);
 }
 

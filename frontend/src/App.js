@@ -17,6 +17,11 @@ const supabase = createClient(
 function App() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [videoBlob, setVideoBlob] = useState(null);
+
+  // Optimization: Lift videos state to avoid refetching on navigation
+  const [videos, setVideos] = useState([]);
+  const [hasFetchedVideos, setHasFetchedVideos] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -26,6 +31,9 @@ function App() {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      // If user changes (login/logout), reset video fetch state
+      setVideos([]);
+      setHasFetchedVideos(false);
     });
 
     return () => subscription.unsubscribe();
@@ -50,11 +58,29 @@ function App() {
         />
         <Route
           path="/"
-          element={<Home supabase={supabase} />}
+          element={
+            <Home
+              supabase={supabase}
+              session={session}
+              videoBlob={videoBlob}
+              setVideoBlob={setVideoBlob}
+              setVideos={setVideos} // Pass to update on save
+              videos={videos}
+            />
+          }
         />
         <Route
           path="/gallery"
-          element={<Gallery supabase={supabase} />}
+          element={
+            <Gallery
+              supabase={supabase}
+              session={session}
+              videos={videos}
+              setVideos={setVideos}
+              hasFetched={hasFetchedVideos}
+              setHasFetched={setHasFetchedVideos}
+            />
+          }
         />
       </Routes>
 
