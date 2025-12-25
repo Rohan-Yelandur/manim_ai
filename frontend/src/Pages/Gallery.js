@@ -29,7 +29,38 @@ const Gallery = ({ supabase, session, videos, setVideos, hasFetched, setHasFetch
       if (error) {
         console.error('Error fetching videos:', error);
       } else {
-        setVideos(data || []);
+        const videoData = data || [];
+
+        // Optimization: Batch fetch signed URLs
+        if (videoData.length > 0) {
+          const validPaths = videoData.map(v => v.video_path).filter(Boolean);
+          if (validPaths.length > 0) {
+            const { data: signedData, error: signedError } = await supabase.storage
+              .from('Lesson Videos')
+              .createSignedUrls(validPaths, 3600); // 1 hour validity
+
+            if (signedError) {
+              console.error('Error batch fetching signed URLs:', signedError);
+            } else if (signedData) {
+              // Create a map for quick lookup: path -> signedUrl
+              const urlMap = {};
+              signedData.forEach(item => {
+                if (item.path && item.signedUrl) {
+                  urlMap[item.path] = item.signedUrl;
+                }
+              });
+
+              // Enrich videos with signedUrl
+              videoData.forEach(video => {
+                if (video.video_path && urlMap[video.video_path]) {
+                  video.signedUrl = urlMap[video.video_path];
+                }
+              });
+            }
+          }
+        }
+
+        setVideos(videoData);
         setHasFetched(true);
       }
       setLoading(false);

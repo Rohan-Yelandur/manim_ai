@@ -1,18 +1,12 @@
 import Hero from "../Components/Hero";
-import Chat from "../Components/Chat";
+import About from "../Components/About";
 
-const Home = ({ supabase, session, videoBlob, setVideoBlob, videos, setVideos }) => {
+
+const Home = () => {
   return (
     <div>
       <Hero />
-      <Chat
-        supabase={supabase}
-        session={session}
-        videoBlob={videoBlob}
-        setVideoBlob={setVideoBlob}
-        videos={videos}
-        setVideos={setVideos}
-      />
+      <About />
     </div>
   );
 };

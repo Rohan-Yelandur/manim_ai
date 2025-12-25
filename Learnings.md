@@ -21,6 +21,7 @@ response if CORS isn't enabled for that specific website.
 ### Concurrency
 
 Async() in JavaScript lets you use await inside to block until a long action completes.
+Use a backgroudnd job queue to handle rendering of multiple videos.
 
 ### Disk bloat
 If I'm going to run this on a server I don't want to store all the manim files, narration scripts,

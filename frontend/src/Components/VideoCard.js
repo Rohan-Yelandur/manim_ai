@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 const VideoCard = ({ video, supabase }) => {
-  const [videoUrl, setVideoUrl] = useState(null);
+  const [videoUrl, setVideoUrl] = useState(video.signedUrl || null);
 
   useEffect(() => {
-    const fetchSignedUrl = async () => { // Make the inner function async
+    // If we already have a signed URL passed via props, use it.
+    if (video.signedUrl) {
+      setVideoUrl(video.signedUrl);
+      return;
+    }
+
+    const fetchSignedUrl = async () => {
       if (video.video_path) {
+        // Fallback: Fetch individually if not present (e.g., immediate update after save)
         const { data, error } = await supabase.storage
           .from('Lesson Videos')
-          .createSignedUrl(video.video_path, 3600); // Valid for 1 hour
+          .createSignedUrl(video.video_path, 3600);
 
         if (error) {
           console.error('Error creating signed URL:', error);
@@ -18,7 +25,7 @@ const VideoCard = ({ video, supabase }) => {
       }
     };
 
-    fetchSignedUrl(); // Call the async function
+    fetchSignedUrl();
   }, [video, supabase]);
 
   const tagsArray = video.tags ? video.tags.split(',').map(tag => tag.trim()) : [];

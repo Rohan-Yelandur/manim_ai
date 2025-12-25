@@ -7,6 +7,7 @@ import Footer from './Components/Footer';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Gallery from './Pages/Gallery';
+import Chat from './Pages/Chat';
 import './App.css';
 
 const supabase = createClient(
@@ -23,14 +24,54 @@ function App() {
   const [videos, setVideos] = useState([]);
   const [hasFetchedVideos, setHasFetchedVideos] = useState(false);
 
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [query, setQuery] = useState('');
+
+  // Timer for loading state
+  useEffect(() => {
+    let interval;
+    if (isGenerating) {
+      setElapsedTime(0);
+      interval = setInterval(() => {
+        setElapsedTime(prev => prev + 1);
+      }, 1000);
+    } else {
+      setElapsedTime(0);
+    }
+    return () => clearInterval(interval);
+  }, [isGenerating]);
+
+  const handleGenerateVideo = async () => {
+    try {
+      setIsGenerating(true);
+      setVideoBlob(null); // Clear previous video
+      const response = await fetch('http://localhost:8000/create-video', {
+
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      })
+      if (response.ok) {
+        setVideoBlob(await response.blob());
+      }
+    } catch (error) {
+      console.error('Error from handleGenerateVideo', error)
+    } finally {
+      setIsGenerating(false);
+      setElapsedTime(0);
+    }
+  }
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
+
       // If user changes (login/logout), reset video fetch state
       setVideos([]);
       setHasFetchedVideos(false);
@@ -58,14 +99,23 @@ function App() {
         />
         <Route
           path="/"
+          element={<Home />}
+        />
+        <Route
+          path="/chat"
           element={
-            <Home
+            <Chat
               supabase={supabase}
               session={session}
               videoBlob={videoBlob}
               setVideoBlob={setVideoBlob}
-              setVideos={setVideos} // Pass to update on save
               videos={videos}
+              setVideos={setVideos}
+              loading={isGenerating}
+              elapsedTime={elapsedTime}
+              query={query}
+              setQuery={setQuery}
+              onGenerate={handleGenerateVideo}
             />
           }
         />
