@@ -1,11 +1,14 @@
-*** Think of pivoting to a comp sci visualizer ***
-Fine tune for teaching comp sci topics instead of math.
-Can integrate code visualizer.
+*** Fine-tuning ***
+Create input (specfic request, general question) and output (code) pairs.
+Gather data from hugging face.
+Generate synthetic data.
+JsonL format
+
+QLoRa on UnSloth. Track training_loss and visualize with MatPlotLib.
+
 
 *** Fix video component too small in chat page ***
-*** Captions ***
-
-*** Long form videos with segmented generatino ***
+*** Changeable voices ***
 
 *** Backend_Plan.md ***
 Security check against prompt injection.
@@ -15,29 +18,20 @@ Create a jobID to synch narration scripts, audios, and videos to create the fina
 Create a background job queue.
 Cleanup garbage on disk.
 
-*** Prompt embedding***
-Embed prompts in an embedding space to find semantically similar prompts to cache.
-Cache hits for videos that already exist for a certain prompt.
+Multithreading for FFMPEG, database video uploads, elevenlabs audio chunk writing to disk.
 
-*** Optimize Prompting ***
-use Google ai studio instead of making api calls
+*** RAG ***
+Create knowledge base for Manim CE.
+First gemini call gathers animation ideas (graphs, number line, etc)
+Prove second gemini call with relevant code to prevent hallucination.
 
-
-*** Stripe billing and ads ***
-
-
+Send API Call back to expensive manim model if code has errors.
 
 *** Generate quiz quesitons ***
-Show desmos stuff if math question. (or build my own graphing software).
+Show desmos stuff if math question.
 Show code visualizer if coding question.
 
-All features
 
-React frontend
-FastAPI backend
-Ffmpeg
-Latex
-
---- Not done yet ---
-Auth
-Prompt embedding for reusing vids
+*** Hash prompts that were exactly used to return videos fast ***
+Any saved video is worth returning to another user.
+Allow for still generating your own video.
