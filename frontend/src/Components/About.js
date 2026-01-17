@@ -49,30 +49,6 @@ const About = () => {
         </div>
       </div>
 
-      {/* About Me */}
-      <div className="about-me-section">
-        <h2 className="section-title">About the Creator</h2>
-        <div className="about-me-content">
-          <p className="section-text">
-            Hi, I'm Rohan Yelandur. I built AnyMath because I used to tutor students and noticed a common pattern:
-            true understanding implies seeing the ideas behind the concepts, not just manipulating symbols.
-          </p>
-          <p className="section-text" style={{ marginTop: '1rem' }}>
-            I wanted to create a tool that could provide that same "aha!" moment I tried to give my students,
-            but accessible to anyone, anywhere, at any time.
-          </p>
-
-          <a
-            href="https://www.linkedin.com/in/rohan-yelandur/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="linkedin-link"
-          >
-            <FaLinkedin size={24} />
-            Connect on LinkedIn
-          </a>
-        </div>
-      </div>
     </div>
   );
 };

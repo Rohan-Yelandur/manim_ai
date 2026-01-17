@@ -1,9 +1,9 @@
 .chat-container {
-    height: calc(100vh - 80px);
+    height: calc(100vh);
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +19,7 @@
 /* Video Styling */
 video.preview-player {
     width: 100%;
-    max-width: 450px;
+    max-width: 350px;
     /* Smaller video */
     border-radius: 16px 16px 0 0;
     background: black;
@@ -31,12 +31,12 @@ video.preview-player {
 
 /* New Save Controls Styles */
 .video-preview {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     /* More space below video (pushes input layout down relatively) */
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 450px;
+    max-width: 350px;
     /* Match video width */
     border-radius: 16px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
@@ -54,14 +54,14 @@ video.preview-player {
     background: white;
     border: 1px solid #e2e8f0;
     border-radius: 32px;
-    padding: 8px 16px;
+    padding: 6px 12px;
     display: flex;
     align-items: flex-end;
     /* Align items to bottom for multiline */
-    gap: 12px;
+    gap: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.03);
     transition: all 0.2s ease;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     /* Spacing from bottom or other elements */
 }
 
@@ -76,16 +76,16 @@ video.preview-player {
     border: none;
     background: transparent;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #1a202c;
-    padding: 12px 0;
+    padding: 10px 0;
     resize: none;
     outline: none;
-    max-height: 150px;
+    max-height: 120px;
     /* Limit max height */
     overflow-y: auto;
     /* Scroll when max height reached */
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .chat-input::placeholder {
@@ -152,7 +152,7 @@ video.preview-player {
 /* Video Styling */
 video.preview-player {
     width: 100%;
-    max-width: 450px;
+    max-width: 350px;
     /* Smaller video */
     border-radius: 16px 16px 0 0;
     background: black;
@@ -164,12 +164,12 @@ video.preview-player {
 
 /* New Save Controls Styles */
 .video-preview {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     /* More space below video */
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 450px;
+    max-width: 350px;
     /* Match video width */
     border-radius: 16px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
@@ -180,29 +180,32 @@ video.preview-player {
 .save-controls {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     background: white;
-    padding: 20px;
+    padding: 12px;
     border-radius: 0 0 16px 16px;
     border-top: 1px solid #f1f5f9;
 }
 
 .save-controls input {
-    padding: 12px;
+    padding: 8px;
     border-radius: 8px;
     border: 1px solid #e2e8f0;
     background: #f8fafc;
     color: #334155;
     margin-bottom: 0;
     text-align: left;
+    font-size: 0.85rem;
 }
 
 .save-controls button {
     background: #10B981;
     color: white;
-    margin-top: 5px;
+    margin-top: 2px;
     width: 100%;
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    padding: 10px;
+    font-size: 0.9rem;
 }
 
 .save-controls button:hover {
@@ -212,14 +215,239 @@ video.preview-player {
 
 .login-message {
     color: #475569;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
 }
 
 .login-btn-small {
     background: var(--primary-blue) !important;
-    font-size: 0.9rem !important;
-    padding: 10px 20px !important;
+    font-size: 0.85rem !important;
+    padding: 8px 16px !important;
+}
+
+/* Login Required Message */
+.login-required-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    background: #f8fafc;
+    border-radius: 16px;
+    min-height: 250px;
+}
+
+.login-required-message h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e3a8a;
+    margin: 0 0 12px 0;
+}
+
+.login-required-message p {
+    font-size: 1rem;
+    color: #475569;
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+}
+
+.login-btn-primary {
+    background: var(--primary-blue) !important;
+    color: white !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    padding: 12px 32px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
+}
+
+.login-btn-primary:hover {
+    background: #1d4ed8 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4) !important;
+}
+
+/* Login Prompt Toast */
+.login-prompt-toast {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fef3c7;
+    border: 2px solid #f59e0b;
+    color: #92400e;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+    z-index: 1000;
+    animation: slideDown 0.3s ease-out;
+    font-weight: 500;
+}
+
+.login-prompt-toast p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.toast-login-btn {
+    display: inline;
+    background: transparent;
+    border: none;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 2px 6px;
+    margin: 0 2px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.toast-login-btn:hover {
+    color: #1d4ed8;
+    background: rgba(37, 99, 235, 0.1);
+    text-decoration: underline;
+}
+
+
+/* Limit Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease;
+}
+
+.limit-modal {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.limit-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: #f1f5f9;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+}
+
+.limit-modal h3 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.limit-modal p {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.upgrade-btn {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    transition: transform 0.2s;
+}
+
+.upgrade-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+.maybe-later-btn {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.maybe-later-btn:hover {
+    color: #1e293b;
+    text-decoration: underline;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.close-modal-btn:hover {
+    color: #475569;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* Mobile Responsiveness */

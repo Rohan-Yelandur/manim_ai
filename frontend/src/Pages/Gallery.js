@@ -3,9 +3,8 @@ import VideoCard from '../Components/VideoCard';
 import './Gallery.css';
 
 const Gallery = ({ supabase, session, videos, setVideos, hasFetched, setHasFetched }) => {
-  // videos state is now lifted to App.js
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(!hasFetched); // Only load if not fetched
+  const [loading, setLoading] = useState(!hasFetched);
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -14,7 +13,6 @@ const Gallery = ({ supabase, session, videos, setVideos, hasFetched, setHasFetch
         return;
       }
 
-      // If already fetched, don't fetch again
       if (hasFetched) {
         setLoading(false);
         return;
@@ -31,18 +29,16 @@ const Gallery = ({ supabase, session, videos, setVideos, hasFetched, setHasFetch
       } else {
         const videoData = data || [];
 
-        // Optimization: Batch fetch signed URLs
         if (videoData.length > 0) {
           const validPaths = videoData.map(v => v.video_path).filter(Boolean);
           if (validPaths.length > 0) {
             const { data: signedData, error: signedError } = await supabase.storage
               .from('Lesson Videos')
-              .createSignedUrls(validPaths, 3600); // 1 hour validity
+              .createSignedUrls(validPaths, 3600);
 
             if (signedError) {
               console.error('Error batch fetching signed URLs:', signedError);
             } else if (signedData) {
-              // Create a map for quick lookup: path -> signedUrl
               const urlMap = {};
               signedData.forEach(item => {
                 if (item.path && item.signedUrl) {
@@ -50,7 +46,6 @@ const Gallery = ({ supabase, session, videos, setVideos, hasFetched, setHasFetch
                 }
               });
 
-              // Enrich videos with signedUrl
               videoData.forEach(video => {
                 if (video.video_path && urlMap[video.video_path]) {
                   video.signedUrl = urlMap[video.video_path];

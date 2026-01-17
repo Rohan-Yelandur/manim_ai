@@ -8,6 +8,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Gallery from './Pages/Gallery';
 import Chat from './Pages/Chat';
+import GetPro from './Pages/GetPro';
 import './App.css';
 
 const supabase = createClient(
@@ -19,16 +20,12 @@ function App() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [videoBlob, setVideoBlob] = useState(null);
-
-  // Optimization: Lift videos state to avoid refetching on navigation
   const [videos, setVideos] = useState([]);
   const [hasFetchedVideos, setHasFetchedVideos] = useState(false);
-
   const [isGenerating, setIsGenerating] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [query, setQuery] = useState('');
 
-  // Timer for loading state
   useEffect(() => {
     let interval;
     if (isGenerating) {
@@ -43,6 +40,12 @@ function App() {
   }, [isGenerating]);
 
   const handleGenerateVideo = async () => {
+    // Don't generate video if user is not logged in
+    if (!session) {
+      console.log('User not logged in, skipping video generation');
+      return;
+    }
+
     try {
       setIsGenerating(true);
       setVideoBlob(null); // Clear previous video
@@ -71,8 +74,6 @@ function App() {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
-
-      // If user changes (login/logout), reset video fetch state
       setVideos([]);
       setHasFetchedVideos(false);
     });
@@ -99,7 +100,7 @@ function App() {
         />
         <Route
           path="/"
-          element={<Home />}
+          element={<Home session={session} />}
         />
         <Route
           path="/chat"
@@ -131,6 +132,10 @@ function App() {
               setHasFetched={setHasFetchedVideos}
             />
           }
+        />
+        <Route
+          path="/get-pro"
+          element={<GetPro />}
         />
       </Routes>
 

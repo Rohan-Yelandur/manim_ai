@@ -26,3 +26,10 @@ Use few-shot prompting with input output pairs.
 
 
 *** Fine-tuning ***
+Exisiting dataset problems:
+- code didn't match the question
+- code didn't compile due to syntax errors
+
+Jsonl format to stream data rather than load entire object into memory at once.
+
+Synthetically generated high quality data with Gemini 3 Pro.

@@ -1,6 +1,6 @@
 /* Base header styles */
 .header {
-    padding: 1rem 3rem;
+    padding: 0.5rem 2rem;
     position: relative;
     /* Relative by default for non-home pages */
     width: 100%;

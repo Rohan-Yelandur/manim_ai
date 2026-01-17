@@ -12,7 +12,6 @@ const VideoCard = ({ video, supabase }) => {
 
     const fetchSignedUrl = async () => {
       if (video.video_path) {
-        // Fallback: Fetch individually if not present (e.g., immediate update after save)
         const { data, error } = await supabase.storage
           .from('Lesson Videos')
           .createSignedUrl(video.video_path, 3600);
